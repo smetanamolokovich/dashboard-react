@@ -18,7 +18,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { Avatar, AvatarImage } from "./avatar"
 
 const users = [
     {

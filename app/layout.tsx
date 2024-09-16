@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/components/themes/theme-provider";
 import TopNav from "@/components/layout/top-nav";
+import { Card } from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,15 +17,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head />
       <body>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
           <div className="container mx-auto my-5 relative">
-            <div className="overflow-hidden rounded-[0.5rem] border bg-background shadow">
+            <Card>
               <header>
                 <TopNav />
               </header>
@@ -32,7 +34,7 @@ export default function RootLayout({
               <main>
                 {children}
               </main>
-            </div>
+            </Card>
           </div>
         </ThemeProvider>
       </body>
