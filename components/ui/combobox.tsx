@@ -1,10 +1,11 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons"
+import * as React from "react";
+import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { Avatar, AvatarImage, AvatarFallback } from "./avatar";
+import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -12,37 +13,49 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
+} from "@/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 
 const users = [
-    {
-        value: "aituar",
-        label: "Aituar Abdil",
-        imgUrl: "https://avatar.vercel.sh/personal.png",
-      },
-]
+  {
+    value: "aituar",
+    label: "Aituar Abdil",
+    imgUrl: "https://avatar.vercel.sh/personal.png",
+  },
+];
 
 const teams = [
-    {
-        value: "monsters",
-        label: "Monsters Inc.",
-        imgUrl: "https://avatar.vercel.sh/personal.png",
-      },
-      {
-        value: "acme",
-        label: "Acme Inc.",
-        imgUrl: "https://avatar.vercel.sh/personal.png",
-      },
-]
+  {
+    value: "monsters",
+    label: "Monsters Inc.",
+    imgUrl: "https://avatar.vercel.sh/personal.png",
+  },
+  {
+    value: "acme",
+    label: "Acme Inc.",
+    imgUrl: "https://avatar.vercel.sh/personal.png",
+  },
+];
+
+const UserImage = () => {
+  return (
+    <span className="relative flex shrink-0 overflow-hidden rounded-full mr-2 h-5 w-5">
+      <img
+        className="aspect-square h-full w-full grayscale"
+        alt="Alicia Koch"
+        src="https://avatar.vercel.sh/personal.png"
+      />
+    </span>
+  );
+};
 
 export function Combobox() {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState(teams[0].value)
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState(teams[0].value);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -53,10 +66,12 @@ export function Combobox() {
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-            {value
-                ? [...users, ...teams].find((option) => option.value === value)?.label
-                : teams[0].label}
-            <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <UserImage />
+          {value
+            ? [...users, ...teams].find((option) => option.value === value)
+                ?.label
+            : teams[0].label}
+          <CaretSortIcon className="ml-auto h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
@@ -70,10 +85,11 @@ export function Combobox() {
                   key={user.value}
                   value={user.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
-                    setOpen(false)
+                    setValue(currentValue === value ? "" : currentValue);
+                    setOpen(false);
                   }}
                 >
+                  <UserImage />
                   {user.label}
                   <CheckIcon
                     className={cn(
@@ -90,10 +106,11 @@ export function Combobox() {
                   key={team.value}
                   value={team.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
-                    setOpen(false)
+                    setValue(currentValue === value ? "" : currentValue);
+                    setOpen(false);
                   }}
                 >
+                  <UserImage />
                   {team.label}
                   <CheckIcon
                     className={cn(
@@ -108,5 +125,5 @@ export function Combobox() {
         </Command>
       </PopoverContent>
     </Popover>
-  )
+  );
 }
