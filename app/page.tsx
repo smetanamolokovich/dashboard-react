@@ -1,9 +1,9 @@
+import DashboardChart from "@/components/custom/dashboard-chart";
 import CreditCardIcon from "@/components/icons/credit-card";
 import DollarIcon from "@/components/icons/dollar";
 import HeartBeatIcon from "@/components/icons/heart-beat";
 import UsersIcon from "@/components/icons/users";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import DashboardCard from "@/components/ui/dashboard-card";
 import { DatePicker } from "@/components/ui/date-picker";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -58,6 +58,10 @@ export default function Home() {
                 text="+573"
                 description="+201 since last hour"
               />
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+              <DashboardChart className="col-span-4" />
             </div>
           </TabsContent>
           <TabsContent value="analytics">analytics</TabsContent>
