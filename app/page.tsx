@@ -1,4 +1,5 @@
 import DashboardChart from "@/components/custom/dashboard-chart";
+import RecentSales from "@/components/custom/recent-sales";
 import CreditCardIcon from "@/components/icons/credit-card";
 import DollarIcon from "@/components/icons/dollar";
 import HeartBeatIcon from "@/components/icons/heart-beat";
@@ -62,6 +63,7 @@ export default function Home() {
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
               <DashboardChart className="col-span-4" />
+              <RecentSales className="col-span-3" />
             </div>
           </TabsContent>
           <TabsContent value="analytics">analytics</TabsContent>
