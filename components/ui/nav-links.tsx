@@ -14,31 +14,31 @@ export default function Nav() {
           pathname === "/" ? "" : "text-muted-foreground"
         }`}
       >
-        Overview
+        Přehled
       </Link>
       <Link
-        href={"/customers"}
+        href={"/damages"}
         className={`text-sm font-medium transition-colors hover:text-primary ${
-          pathname === "/customers" ? "" : "text-muted-foreground"
+          pathname === "/damages" ? "" : "text-muted-foreground"
         }`}
       >
-        Customers
+        Seznam vozidel
       </Link>
       <Link
-        href={"/products"}
+        href={"/assessment"}
         className={`text-sm font-medium transition-colors hover:text-primary ${
-          pathname === "/products" ? "" : "text-muted-foreground"
+          pathname === "/assessment" ? "" : "text-muted-foreground"
         }`}
       >
-        Products
+        Ohodnocení poškození
       </Link>
       <Link
-        href={"/settings"}
+        href={"/controls"}
         className={`text-sm font-medium transition-colors hover:text-primary ${
-          pathname === "/settings" ? "" : "text-muted-foreground"
+          pathname === "/controls" ? "" : "text-muted-foreground"
         }`}
       >
-        Settings
+        Kontrola
       </Link>
     </nav>
   );
