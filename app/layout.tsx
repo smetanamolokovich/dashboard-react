@@ -28,7 +28,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="container mx-auto my-5 relative">
-            <Card>
+            <Card className="h-[95vh]">
               <header>
                 <TopNav />
               </header>

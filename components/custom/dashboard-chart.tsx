@@ -34,7 +34,7 @@ export default function DashboardChart({ className }: DashboardChartProps) {
   return (
     <Card className={className}>
       <CardHeader>
-        <CardTitle>Overview</CardTitle>
+        <CardTitle>Přehled</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="w-full h-full">
@@ -51,7 +51,7 @@ export default function DashboardChart({ className }: DashboardChartProps) {
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => `$${value}`}
+              tickFormatter={(value) => `${value}`}
             />
             <Bar dataKey="revenue" fill="hsl(var(--primary))" radius={4} />
           </BarChart>

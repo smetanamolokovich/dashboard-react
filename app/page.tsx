@@ -1,9 +1,5 @@
 import DashboardChart from "@/components/custom/dashboard-chart";
 import RecentSales from "@/components/custom/recent-sales";
-import CreditCardIcon from "@/components/icons/credit-card";
-import DollarIcon from "@/components/icons/dollar";
-import HeartBeatIcon from "@/components/icons/heart-beat";
-import UsersIcon from "@/components/icons/users";
 import { Button } from "@/components/ui/button";
 import DashboardCard from "@/components/ui/dashboard-card";
 import { DatePicker } from "@/components/ui/date-picker";
@@ -17,17 +13,17 @@ export default function Home() {
 
         <div className="flex items-center space-x-2">
           <DatePicker />
-          <Button>Download</Button>
+          <Button>Stáhnout</Button>
         </div>
       </div>
 
       <div className="space-y-4">
         <Tabs defaultValue="overview">
           <TabsList>
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="analytics">Analytics</TabsTrigger>
-            <TabsTrigger value="reports">Reports</TabsTrigger>
-            <TabsTrigger value="notifications">Notifications</TabsTrigger>
+            <TabsTrigger value="overview">Přehled</TabsTrigger>
+            <TabsTrigger value="analytics">Analytiky</TabsTrigger>
+            <TabsTrigger value="reports">Reporty</TabsTrigger>
+            <TabsTrigger value="notifications">Upozornění</TabsTrigger>
           </TabsList>
 
           <TabsContent
@@ -36,28 +32,24 @@ export default function Home() {
           >
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               <DashboardCard
-                title="Total Revenue"
-                icon={<DollarIcon />}
-                text="$45,231.89"
-                description="+20.1% from last month"
+                title="Celkem vozidel"
+                text="250"
+                description="+20 oproti minulému měsíci"
               />
               <DashboardCard
-                title="Subscriptions"
-                icon={<UsersIcon />}
-                text="+2350"
-                description="+180.1% from last month"
+                title="Celkem reporty"
+                text="+250"
+                description="+80 oproti minulému měsíci"
               />
               <DashboardCard
-                title="Sales"
-                icon={<CreditCardIcon />}
-                text="+12,234"
-                description="+19% from last month"
+                title="Nových zákazníků"
+                text="+20"
+                description="+9 oproti minulému měsíci"
               />
               <DashboardCard
-                title="Active Now"
-                icon={<HeartBeatIcon />}
-                text="+573"
-                description="+201 since last hour"
+                title="Kolik aut se dnes udělalo?"
+                text="+10"
+                description="+2 od poslední hodiny"
               />
             </div>
 
@@ -66,9 +58,6 @@ export default function Home() {
               <RecentSales className="col-span-3" />
             </div>
           </TabsContent>
-          <TabsContent value="analytics">analytics</TabsContent>
-          <TabsContent value="reports">reports</TabsContent>
-          <TabsContent value="notifications">notifications</TabsContent>
         </Tabs>
       </div>
     </div>

@@ -2,9 +2,10 @@
 
 import * as React from "react";
 import {
-  CaretSortIcon,
-  ChevronDownIcon,
-  DotsHorizontalIcon,
+  Cross1Icon,
+  DotsVerticalIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
 } from "@radix-ui/react-icons";
 import {
   ColumnDef,
@@ -40,179 +41,251 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const data: Payment[] = [
+const data: Damage[] = [
   {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    email: "ken99@yahoo.com",
+    rz: "MUJT3ST",
+    client: "Firma klienta",
+    date: "31.01.2024 18:10 Strakonice",
+    ppuk: false,
+    smp: false,
+    pp: false,
+    reservationId: 0,
+    recieveDate: "10.08.2023 10:23",
   },
   {
-    id: "3u1reuv4",
-    amount: 242,
-    status: "success",
-    email: "Abe45@gmail.com",
+    rz: "3AD 8387",
+    client: "ABC Data, s.r.o",
+    date: null,
+    ppuk: true,
+    smp: false,
+    pp: false,
+    reservationId: 1,
+    recieveDate: "10.08.2023 10:23",
   },
   {
-    id: "derv1ws0",
-    amount: 837,
-    status: "processing",
-    email: "Monserrat44@gmail.com",
+    rz: "4BC 1234",
+    client: "XYZ Logistics",
+    date: "12.02.2024 09:15 Prague",
+    ppuk: true,
+    smp: true,
+    pp: true,
+    reservationId: 2,
+    recieveDate: "11.08.2023 14:45",
   },
   {
-    id: "5kma53ae",
-    amount: 874,
-    status: "success",
-    email: "Silas22@gmail.com",
+    rz: "5DE 5678",
+    client: "Transport Co.",
+    date: "05.03.2024 15:30 Brno",
+    ppuk: false,
+    smp: true,
+    pp: false,
+    reservationId: 3,
+    recieveDate: "12.08.2023 09:30",
   },
   {
-    id: "bhqecj4p",
-    amount: 721,
-    status: "failed",
-    email: "carmella@hotmail.com",
+    rz: "6FG 9101",
+    client: "Logistics Solutions",
+    date: "15.01.2024 12:00 Plzeň",
+    ppuk: true,
+    smp: false,
+    pp: true,
+    reservationId: 4,
+    recieveDate: "13.08.2023 08:15",
+  },
+  {
+    rz: "7HI 1121",
+    client: "Delivery Experts",
+    date: null,
+    ppuk: false,
+    smp: false,
+    pp: false,
+    reservationId: 5,
+    recieveDate: "14.08.2023 16:00",
+  },
+  {
+    rz: "8JK 1314",
+    client: "Freight Forwarders Inc.",
+    date: "28.02.2024 11:45 Liberec",
+    ppuk: true,
+    smp: true,
+    pp: true,
+    reservationId: 6,
+    recieveDate: "15.08.2023 10:30",
+  },
+  {
+    rz: "9LM 1516",
+    client: "Cargo Services",
+    date: "20.03.2024 13:20 Hradec Králové",
+    ppuk: false,
+    smp: true,
+    pp: false,
+    reservationId: 7,
+    recieveDate: "16.08.2023 14:10",
+  },
+  {
+    rz: "10NO 1718",
+    client: "Transport & Logistics",
+    date: "30.04.2024 08:50 Olomouc",
+    ppuk: true,
+    smp: false,
+    pp: true,
+    reservationId: 8,
+    recieveDate: "17.08.2023 17:45",
+  },
+  {
+    rz: "11PQ 1920",
+    client: "Quick Transport",
+    date: "18.05.2024 10:30 Zlin",
+    ppuk: true,
+    smp: false,
+    pp: true,
+    reservationId: 9,
+    recieveDate: "18.08.2023 11:00",
+  },
+  {
+    rz: "12RS 2122",
+    client: "Global Freight",
+    date: "22.06.2024 14:00 Karlovy Vary",
+    ppuk: false,
+    smp: true,
+    pp: false,
+    reservationId: 10,
+    recieveDate: "19.08.2023 12:15",
+  },
+  {
+    rz: "13ST 2324",
+    client: "Eco Logistics",
+    date: null,
+    ppuk: true,
+    smp: true,
+    pp: true,
+    reservationId: 11,
+    recieveDate: "20.08.2023 09:45",
+  },
+  {
+    rz: "14UV 2526",
+    client: "Reliable Carriers",
+    date: "25.07.2024 16:30 Pilsen",
+    ppuk: false,
+    smp: false,
+    pp: true,
+    reservationId: 12,
+    recieveDate: "21.08.2023 15:30",
+  },
+  {
+    rz: "15WX 2728",
+    client: "Express Delivery",
+    date: "30.08.2024 08:00 Brno",
+    ppuk: true,
+    smp: false,
+    pp: false,
+    reservationId: 13,
+    recieveDate: "22.08.2023 10:00",
   },
 ];
 
-export type Payment = {
-  id: string;
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
-  email: string;
+export type Damage = {
+  rz: string;
+  client: string;
+  date: string | null;
+  ppuk: boolean;
+  smp: boolean;
+  pp: boolean;
+  reservationId: number;
+  recieveDate: string;
 };
 
-export const columns: ColumnDef<Payment>[] = [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value: unknown) =>
-          table.toggleAllPageRowsSelected(!!value)
-        }
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value: unknown) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
+export const columns: ColumnDef<Damage>[] = [
   {
     accessorKey: "rz",
     header: "RZ",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
-    ),
+    cell: ({ row }) => <div className="capitalize">{row.getValue("rz")}</div>,
   },
   {
     accessorKey: "client",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Klient
-          <CaretSortIcon className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    header: "Klient",
+    cell: ({ row }) => <div>{row.getValue("client")}</div>,
   },
   {
     accessorKey: "date",
-    header: () => <div className="text-right">Datum převozu</div>,
+    header: () => <div className="text-center">Datum převozu</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
+      const dateValue = row.getValue("date");
+      return (
+        <div className="flex justify-center align-center">
+          {dateValue ? dateValue : <Cross1Icon />}
+        </div>
+      );
     },
   },
   {
     accessorKey: "ppuk",
-    header: () => <div className="text-right">PPuK</div>,
+    header: () => <div className="text-center">PPuK</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
+      return (
+        <div className="flex align-center justify-center">
+          <Checkbox
+            checked={row.getValue("ppuk")}
+            onCheckedChange={(value: unknown) => (value = !value)}
+            aria-label="Select row"
+          />
+        </div>
+      );
     },
   },
   {
     accessorKey: "smp",
-    header: () => <div className="text-right">SMP</div>,
+    header: () => <div className="text-center">SMP</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
+      return (
+        <div className="flex align-center justify-center">
+          <Checkbox
+            checked={row.getValue("smp")}
+            onCheckedChange={(value: unknown) => (value = !value)}
+            aria-label="Select row"
+          />
+        </div>
+      );
     },
   },
   {
     accessorKey: "pp",
-    header: () => <div className="text-right">PP</div>,
+    header: () => <div className="text-center">PP</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
+      return (
+        <div className="flex align-center justify-center">
+          <Checkbox
+            checked={row.getValue("pp")}
+            onCheckedChange={(value: unknown) => (value = !value)}
+            aria-label="Select row"
+          />
+        </div>
+      );
     },
   },
   {
     id: "actions",
     enableHiding: false,
-    cell: ({ row }) => {
-      const payment = row.original;
-
+    cell: () => {
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <DotsHorizontalIcon className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex align-center justify-end">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <DotsVerticalIcon className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Akce</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                Editovat poskozeni
+              </DropdownMenuItem>
+              <DropdownMenuItem>Export PDF</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       );
     },
   },
@@ -250,7 +323,7 @@ export default function DataTableDemo() {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
+          placeholder="Vyhledávání..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("email")?.setFilterValue(event.target.value)
@@ -258,11 +331,6 @@ export default function DataTableDemo() {
           className="max-w-sm"
         />
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <ChevronDownIcon className="ml-2 h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             {table
               .getAllColumns()
@@ -327,7 +395,7 @@ export default function DataTableDemo() {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  Prázdný seznam dat.
                 </TableCell>
               </TableRow>
             )}
@@ -335,10 +403,6 @@ export default function DataTableDemo() {
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
         <div className="space-x-2">
           <Button
             variant="outline"
@@ -346,7 +410,7 @@ export default function DataTableDemo() {
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Previous
+            <ArrowLeftIcon />
           </Button>
           <Button
             variant="outline"
@@ -354,7 +418,7 @@ export default function DataTableDemo() {
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Next
+            <ArrowRightIcon />
           </Button>
         </div>
       </div>
