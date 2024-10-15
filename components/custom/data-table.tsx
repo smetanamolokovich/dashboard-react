@@ -213,7 +213,7 @@ export const columns: ColumnDef<Damage>[] = [
       const dateValue = row.getValue("date");
       return (
         <div className="flex justify-center align-center">
-          {dateValue ? dateValue : <Cross1Icon />}
+          {dateValue ? String(dateValue) : <Cross1Icon />}
         </div>
       );
     },
