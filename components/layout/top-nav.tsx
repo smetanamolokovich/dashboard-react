@@ -12,7 +12,7 @@ export default function TopNav() {
         <NavLinks />
 
         <div className="ml-auto flex items-center space-x-4">
-          <Input className="w-full md:w-[100px] lg:w-[300px]" type="text" placeholder="Search..." />
+          <Input className="w-full md:w-[100px] lg:w-[300px]" type="text" placeholder="Vyhledávání..." />
           <ProfileDropdownMenu />
         </div>
       </div>

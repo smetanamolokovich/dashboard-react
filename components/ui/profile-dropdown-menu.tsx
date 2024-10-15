@@ -21,7 +21,7 @@ export function ProfileDropdownMenu() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-48" align="end">
         <DropdownMenuLabel>
-          <p className="text-sm font-medium leading-none">aituar</p>
+          <p className="text-sm font-medium leading-none">martin</p>
           <p className="text-xs leading-none text-muted-foreground">
             m@example.com
           </p>
@@ -30,24 +30,16 @@ export function ProfileDropdownMenu() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            Profile
+            Profil
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            Billing
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
+            Nastavení
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Keyboard shortcuts
-            <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Log out</DropdownMenuItem>
+        <DropdownMenuItem>Odhlaste se</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
